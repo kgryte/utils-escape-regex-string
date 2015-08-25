@@ -1,6 +1,6 @@
 {
   "name": "utils-escape-regex-string",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Escapes a regular expression string.",
   "author": {
     "name": "Athan Reines",
