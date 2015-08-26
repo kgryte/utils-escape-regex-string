@@ -1,7 +1,7 @@
 {
   "name": "utils-escape-regex-string",
   "version": "1.0.0",
-  "description": "Escapes a regular expression string.",
+  "description": "Escapes a regular expression string or pattern.",
   "author": {
     "name": "Athan Reines",
     "email": "kgryte@gmail.com"
@@ -33,7 +33,8 @@
     "regexp",
     "string",
     "escape",
-    "esc"
+    "esc",
+    "pattern"
   ],
   "bugs": {
     "url": "https://github.com/kgryte/utils-escape-regex-string/issues"

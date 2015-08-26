@@ -60,12 +60,43 @@ describe( 'utils-escape-regex-string', function tests() {
 
 		expected = [
 			'/beep/',
-			'/\\[A-Z\\]\\*/',
-			'/\\\\\//ig',
-			'/\\[A-Z\\]\\{0,\\}/',
+			'/\\[A\\-Z\\]\\*/',
+			'/\\\\\\\//ig',
+			'/\\[A\\-Z\\]\\{0,\\}/',
 			'/\\^boop\\$/',
 			'/\\(\\?:\\.\\*\\)/',
 			'/\\(\\?:beep\\|boop\\)/'
+		];
+
+		for ( var i = 0; i < values.length; i++ ) {
+			actual = rescape( values[ i ] );
+			assert.strictEqual( actual, expected[ i ], values[ i ] );
+		}
+	});
+
+	it( 'should escape a regular expression string pattern', function test() {
+		var expected,
+			actual,
+			values;
+
+		values = [
+			'beep',
+			'[A-Z]*',
+			'\\\/',
+			'[A-Z]{0,}',
+			'^boop$',
+			'(?:.*)',
+			'(?:beep|boop)'
+		];
+
+		expected = [
+			'beep',
+			'\\[A\\-Z\\]\\*',
+			'\\\\\\\/',
+			'\\[A\\-Z\\]\\{0,\\}',
+			'\\^boop\\$',
+			'\\(\\?:\\.\\*\\)',
+			'\\(\\?:beep\\|boop\\)'
 		];
 
 		for ( var i = 0; i < values.length; i++ ) {

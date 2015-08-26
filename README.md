@@ -2,7 +2,7 @@ RegExp String
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Escapes a [regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions) string.
+> Escapes a [regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions) string or pattern.
 
 
 ## Installation
@@ -20,11 +20,14 @@ var rescape = require( 'utils-escape-regex-string' );
 
 #### rescape( str )
 
-Escapes a [regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions) `string`.
+Escapes a [regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions) `string` or pattern.
 
 ``` javascript
-var str = rescape( '/[A-Z]*/' )
-// returns '/\\[A-Z\\]\\*/'
+var str = rescape( '/[A-Z]*/' );
+// returns '/\\[A\\-Z\\]\\*/'
+
+str = rescape( '[A-Z]*' );
+// returns '\\[A\\-Z\\]\\*'
 ```
 
 If provided a value which is not a primitive `string`, the function __throws__ a `TypeError`.
@@ -47,23 +50,44 @@ var rescape = require( 'utils-escape-regex-string' );
 console.log( rescape( '/beep/' ) );
 // returns '/beep/'
 
+console.log( rescape( 'beep' ) );
+// returns 'beep'
+
 console.log( rescape( '/[A-Z]*/' ) );
-// returns '/\\[A-Z\\]\\*/'
+// returns '/\\[A\\-Z\\]\\*/'
+
+console.log( rescape( '[A-Z]*' ) );
+// returns '\\[A\\-Z\\]\\*'
 
 console.log( rescape( '/\\\//ig' ) );
-// returns '/\\\\\//ig'
+// returns '/\\\\\\\//ig'
+
+console.log( rescape( '\\\/' ) );
+// returns '\\\\\\\/'
 
 console.log( rescape( '/[A-Z]{0,}/' ) );
-// returns '/\\[A-Z\\]\\{0,\\}/'
+// returns '/\\[A\\-Z\\]\\{0,\\}/'
+
+console.log( rescape( '[A-Z]{0,}' ) );
+// returns '\\[A\\-Z\\]\\{0,\\}'
 
 console.log( rescape( '/^boop$/' ) );
 // returns '/\\^boop\\$/'
 
+console.log( rescape( '^boop$' ) );
+// returns '\\^boop\\$'
+
 console.log( rescape( '/(?:.*)/' ) );
 // returns '/\\(\\?:\\.\\*\\)/'
 
+console.log( rescape( '(?:.*)' ) );
+// returns '\\(\\?:\\.\\*\\)'
+
 console.log( rescape( '/(?:beep|boop)/' ) );
 // returns '/\\(\\?:beep\\|boop\\)/'
+
+console.log( rescape( '(?:beep|boop)' ) );
+// returns '\\(\\?:beep\\|boop\\)'
 ```
 
 To run the example code from the top-level application directory,
